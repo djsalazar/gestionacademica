@@ -5,10 +5,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   // Enable CORS
   app.enableCors();
-  
+
   // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({
@@ -17,7 +17,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  
+
   // Swagger API documentation
   const config = new DocumentBuilder()
     .setTitle('Sistema de Gestión Académica EEJ')
@@ -27,9 +27,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
-  
+
   // Start the server
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3010;
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);
 }
